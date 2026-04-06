@@ -1,0 +1,497 @@
+/* Обнуление стилей */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Основные стили страницы */
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFF3ED;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Макет с боковым меню */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Боковое меню */
+.sidebar {
+  width: 280px;
+  background-color: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 100;
+  border-right: 1px solid #eee;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FF2D2D;
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-item {
+  padding: 14px 16px;
+  font-size: 16px;
+  color: #555;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background-color: #FF2D2D;
+  color: white;
+  font-weight: 600;
+}
+
+/* Основной контент */
+.main-content {
+  flex: 1;
+  margin-left: 280px;
+  padding: 40px;
+}
+
+/* Секции контента (навигация) */
+.content-section {
+  display: none;
+  animation: fadeIn 0.4s ease;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.content-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+/* Заголовок на главной */
+h1 {
+  color: #e74c3c;
+  margin-bottom: 20px;
+}
+
+/* Главный контейнер: слева — расписание, справа — статистика */
+.dashboard-container {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+/* Левая часть: Расписание — занимает 65% ширины */
+.schedule-grid {
+  display: flex;
+  gap: 20px;
+  flex: 0 0 55%; /* Фиксированная ширина — не растягивается */
+}
+
+/* Группа дней недели (столбец) */
+.schedule-column-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+/* Один день недели */
+.schedule-column {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  width: 450px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.schedule-column h3 {
+  color: #e74c3c;
+  margin-top: 0;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+/* Элемент расписания — строка */
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #000;
+  font-size: 0.95em;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+/* Название предмета — слева */
+.subject {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+/* Блок времени и аудитории — справа */
+.time-room {
+  display: flex;
+  gap: 15px; /* Отступ между временем и аудиторией */
+  align-items: center;
+  white-space: nowrap;
+}
+
+.time,
+.room {
+  font-family: monospace; /* Можно убрать, если не нравится */
+  font-weight: 500;
+  font-size: 18px;
+  color: #555;
+}
+
+/* Правая часть: Успеваемость и репетиторство — занимает 35% ширины */
+.stats-column {
+  flex: 0 0 38%; /* Шире, чем раньше */
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Больший отступ между блоками — как на макете */
+}
+
+.stat-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stat-box h3 {
+  color: #e74c3c;
+  margin-top: 0;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.stat-item,
+.tutor-item {
+  padding: 6px 0;
+  border-bottom: 1px solid #000;
+  font-size: 0.95em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-item:last-child,
+.tutor-item:last-child {
+  border-bottom: none;
+}
+
+/* --- Секция "Практика" (билеты и чат) --- */
+
+.upload-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+#fileInput {
+  margin-bottom: 10px;
+}
+
+#uploadBtn {
+  background-color: #FF2D2D;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+#uploadBtn:hover {
+  background-color: #e01b1b;
+}
+
+#uploadStatus {
+  margin-top: 10px;
+  color: #e74c3c;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #FF2D2D;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+.btn-primary:hover {
+  background-color: #e01b1b;
+}
+
+.chat-container {
+  background: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 18px 0 18px 18px;
+  overflow: hidden;
+  margin-top: 30px;
+  height: 950px;
+  display: flex;
+  flex-direction: column;
+  max-height: 600px;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.message.ai {
+  align-self: flex-start;
+  background-color: #FFF3ED;
+  color: #333;
+  padding: 14px 18px;
+  max-width: 75%;
+  border-left: 3px solid #FF2D2D;
+  position: relative;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #FF2D2D;
+  color: white;
+  border-radius: 18px 18px 0 18px;
+  padding: 14px 18px;
+  max-width: 75%;
+}
+
+.message p {
+  margin: 0;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+.evaluation-true { color: #27ae60; font-weight: bold; }
+.evaluation-partial { color: #f39c12; font-weight: bold; }
+.evaluation-false { color: #e74c3c; font-weight: bold; }
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding: 12px;
+  background-color: #fff;
+  gap: 10px;
+}
+
+.chat-input textarea {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  font-family: inherit;
+  min-height: 48px;
+  max-height: 120px;
+}
+
+.chat-input button {
+  background-color: #FF2D2D;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 6px rgba(255, 45, 45, 0.3);
+  margin-top: 8px;
+}
+
+.chat-input button:hover {
+  background-color: #e01b1b;
+}
+
+/* --- Секция "Ассистент исследователя" --- */
+
+.research-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.research-actions .btn-primary {
+  flex: 1;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 16px;
+}
+
+/* --- Стили для чата в "Ассистент исследователя" --- */
+
+#researchChatContainer {
+  margin-top: 20px;
+  max-height: 600px; /* Увеличено с 400px → 600px — на 50% больше */
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden; /* Чтобы контент не вылазил за границы */
+}
+
+.chat-actions {
+  padding: 10px 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 10;
+  position: relative;
+}
+
+.chat-actions .btn-primary {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chat-actions .btn-primary:hover {
+  background-color: #c0392b;
+}
+
+#researchChatMessages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto; /* ✅ ВКЛЮЧАЕМ ПРОКРУТКУ */
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+  /* Скроллбар — видимый, но стильный */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ddd #f8f8f8; /* Цвет ползунка и фона */
+}
+
+#researchChatMessages::-webkit-scrollbar {
+  width: 8px; /* Ширина скроллбара */
+}
+
+#researchChatMessages::-webkit-scrollbar-track {
+  background: #f8f8f8;
+  border-radius: 4px;
+}
+
+#researchChatMessages::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+#researchChatMessages::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+.placeholder {
+  color: #999;
+  text-align: center;
+  padding: 40px 0;
+  font-style: italic;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+    padding: 15px;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .schedule-grid {
+    flex-direction: column;
+    flex: none;
+  }
+
+  .stats-column {
+    flex: none;
+    width: 100%;
+  }
+
+  .schedule-item {
+    font-size: 0.9em;
+  }
+
+  .time-room {
+    gap: 10px;
+  }
+}

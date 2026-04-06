@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ассистент исследователя</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <!-- Боковое меню -->
+    <aside class="sidebar">
+      <div class="logo">📚 COGNITO AI</div>
+      <nav class="menu">
+        <a href="#" class="menu-item active" data-section="home">Главная</a>
+        <a href="#" class="menu-item" data-section="researcher">Ассистент исследователя</a>
+        <a href="#" class="menu-item" data-section="academic">Академическая помощь</a>
+        <a href="#" class="menu-item" data-section="practice">Практика</a>
+      </nav>
+    </aside>
+
+    <!-- Основное содержимое -->
+    <main class="main-content">
+      <section id="home" class="content-section active">
+      <h1>С возвращением, {name}</h1>
+
+      <!-- Главный контейнер: слева — расписание, справа — статистика -->
+      <div class="dashboard-container">
+        <!-- Левая часть: Расписание в двух колонках -->
+        <div class="schedule-grid">
+          <!-- Группа 1: Пн, Вт, Ср -->
+          <div class="schedule-column-group">
+            <div class="schedule-column">
+              <h3>Понедельник</h3>
+              <div id="monday-schedule" class="schedule-list"></div>
+            </div>
+            <div class="schedule-column">
+              <h3>Вторник</h3>
+              <div id="tuesday-schedule" class="schedule-list"></div>
+            </div>
+            <div class="schedule-column">
+              <h3>Среда</h3>
+              <div id="wednesday-schedule" class="schedule-list"></div>
+            </div>
+          </div>
+
+          <!-- Группа 2: Чт, Пт -->
+          <div class="schedule-column-group">
+            <div class="schedule-column">
+              <h3>Четверг</h3>
+              <div id="thursday-schedule" class="schedule-list"></div>
+            </div>
+            <div class="schedule-column">
+              <h3>Пятница</h3>
+              <div id="friday-schedule" class="schedule-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правая часть: Успеваемость и репетиторство -->
+        <div class="stats-column">
+          <div class="stat-box">
+            <h3>Успеваемость и посещаемость</h3>
+            <div id="attendance-grades" class="stats-list"></div>
+          </div>
+          <div class="stat-box">
+            <h3>Занятия с репетитором</h3>
+            <div id="tutor-sessions" class="tutor-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <section id="researcher" class="content-section">
+        <h2>Ассистент исследователя</h2>
+        <p>Здесь вы можете анализировать тексты, генерировать гипотезы и структурировать данные.</p>
+      </section>
+
+      <section id="academic" class="content-section">
+        <h2>Академическая помощь</h2>
+        <p>Поддержка в подготовке рефератов, докладов и научных работ.</p>
+      </section>
+
+      <section id="practice" class="content-section">
+        <h2>Практика</h2>
+        <p>Загрузите файл — и я сгенерирую билет. Отвечайте прямо в чате. (если выдало ошибку JSON перезалейте файл, если сгенерируется 1 билет, то перегенерируйте билеты, т.к. ИИ может ошибаться)</p>
+
+        <!-- Загрузка файла -->
+        <div class="upload-box">
+          <input type="file" id="fileInput" accept=".docx,.txt" />
+          <button id="uploadBtn">📄 Загрузить файл</button>
+          <div id="uploadStatus"></div>
+        </div>
+
+        <!-- Кнопка получения билета -->
+        <button id="getTicketBtn" class="btn-primary">🎲 Получить билет</button>
+
+        <!-- ЧАТ — теперь главный элемент -->
+        <div class="chat-container">
+          <div id="chatMessages" class="chat-messages"></div>
+          <div class="chat-input">
+            <textarea id="answerInput" placeholder="Напишите ответ на вопрос..."></textarea>
+            <button id="sendAnswerBtn">➤</button>
+          </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/nav.js"></script>
+  <script src="/static/dashboard.js"></script>
+  <script src="/static/chat.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
